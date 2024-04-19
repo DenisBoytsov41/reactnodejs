@@ -1,9 +1,11 @@
 import React from 'react';
 
-function ThemeToggle() {
+const ThemeToggle = ({ onClick, darkMode }) => {
   return (
-    <button className="btn btn-secondary">Темная тема</button>
+    <button onClick={onClick} className="btn theme-toggle">
+      {darkMode ? "Светлая тема" : "Тёмная тема"}
+    </button>
   );
-}
+};
 
 export default ThemeToggle;

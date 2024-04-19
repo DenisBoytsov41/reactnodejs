@@ -12,6 +12,7 @@ function App() {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
   const [showCookieBanner, setShowCookieBanner] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   const handleLoginBtnClick = () => {
     setShowLoginForm(true);
@@ -27,6 +28,19 @@ function App() {
     setShowCookieBanner(false);
     localStorage.setItem('cookiesAccepted', true);
   };
+  const handleThemeToggle = () => {
+    setDarkMode(prevMode => !prevMode);
+  };
+
+  useEffect(() => {
+    const toggleTheme = () => {
+      document.body.classList.toggle("dark-mode", darkMode);
+    };
+
+    toggleTheme();
+
+    return () => {};
+  }, [darkMode]);
 
   return (
     <div className="container">
@@ -34,7 +48,7 @@ function App() {
       <h2>Приветствуем на нашем сайте</h2>
       <MyButton id="loginButton" onClick={handleLoginBtnClick} className="btn">Авторизация</MyButton>
       <MyButton id="registerButton" onClick={handleRegisterBtnClick} className="btn">Регистрация</MyButton>
-      <ThemeToggle />
+      <ThemeToggle onClick={handleThemeToggle} darkMode={darkMode} />
       <div style={{ display: showLoginForm ? 'block' : 'none' }} className="form-container">
         <h3>Форма авторизации</h3>
         <LoginForm />

@@ -29,7 +29,6 @@ body {
     text-align: left;
 }
 
-/* Приоритетные стили */
 body.dark-mode {
     background-color: #222;
     color: #fff;
